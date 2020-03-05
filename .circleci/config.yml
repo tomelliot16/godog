@@ -82,10 +82,12 @@ jobs:
       - install
       - all_shared
   go1_12_windows:
-    executor: win/default
+    executor: 
+      name: win/default
+      shell: bash.exe
     steps:
       - checkout
-      - run: $env:GO111MODULE = "on"
+      - install
       - all_shared
 
 workflows:
