@@ -50,11 +50,8 @@ commands:
     steps:
       - codecov/upload:
           file: "coverage.txt"
-  all:
-    description: "Run all commands against godog code"
+  all_shared:
     steps:
-      - checkout
-      - install
       - vet
       - fmt
       - lint
@@ -67,22 +64,29 @@ jobs:
     working_directory: /go/src/github.com/cucumber/godog
     executor: exec_go_1_12
     steps:
-      - all
+      - checkout
+      - install
+      - all_shared
   go1_13:
     working_directory: /go/src/github.com/cucumber/godog
     executor: exec_go_1_13
     steps:
-      - all
+      - checkout
+      - install
+      - all_shared
   go1_14:
     working_directory: /go/src/github.com/cucumber/godog
     executor: exec_go_1_14
     steps:
-      - all
+      - checkout
+      - install
+      - all_shared
   go1_12_windows:
     executor: win/default
     steps:
       - checkout
-      - run: echo 'Hello, Windows'
+      - run: $env:GO111MODULE = "on"
+      - all_shared
 
 workflows:
   version: 2
