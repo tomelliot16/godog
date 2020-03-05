@@ -53,7 +53,7 @@ commands:
   all_shared:
     steps:
       - vet
-      - fmt
+      # - fmt
       - lint
       - godog
       - go_test
