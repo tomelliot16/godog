@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   codecov: codecov/codecov@1.0.5
+  win: circleci/windows@2.3.0
 
 executors:
   exec_go_1_12:
@@ -77,11 +78,17 @@ jobs:
     executor: exec_go_1_14
     steps:
       - all
+  go1_12_windows:
+    executor: win/default
+    steps:
+      - checkout
+      - run: echo 'Hello, Windows'
 
 workflows:
   version: 2
   test:
     jobs:
-      - go1_12
-      - go1_13
-      - go1_14
+      # - go1_12
+      - go1_12_windows
+      # - go1_13
+      # - go1_14
