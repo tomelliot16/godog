@@ -87,8 +87,8 @@ jobs:
       shell: bash.exe
     steps:
       - checkout
-      - install
-      - godog
+      - run: go install ./cmd/godog
+      - run: /c/windows/system32/config/systemprofile/go/bin/godog -f progress --strict
       - go_test
 
 workflows:
